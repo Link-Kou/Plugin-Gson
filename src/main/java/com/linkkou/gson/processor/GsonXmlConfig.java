@@ -13,7 +13,7 @@ import java.util.HashMap;
 /**
  * @author lk
  * @version 1.0
- * @date 2019/9/10 13:30
+ *
  */
 public class GsonXmlConfig {
 

@@ -3,7 +3,7 @@ package com.gsontest.enumtest;
 /**
  * @author lk
  * @version 1.0
- * @date 2019/9/2 16:00
+ *
  */
 public class User {
 

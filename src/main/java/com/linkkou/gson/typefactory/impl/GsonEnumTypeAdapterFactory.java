@@ -17,7 +17,7 @@ import java.io.IOException;
  *
  * @author lk
  * @version 1.0
- * @date 2019/9/2 14:33
+ *
  */
 public class GsonEnumTypeAdapterFactory implements TypeAdapterFactory {
 

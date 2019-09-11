@@ -8,7 +8,7 @@ import com.google.gson.JsonElement;
  *
  * @author lk
  * @version 1.0
- * @date 2019/9/2 14:33
+ *
  */
 public interface GsonEnum<E> {
 
