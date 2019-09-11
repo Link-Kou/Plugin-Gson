@@ -10,8 +10,17 @@
     JAVA1.8以上
 
 ### 在线安装
- 
- 
+
+ ```xml：
+
+ <dependency>
+   <groupId>com.github.link-kou</groupId>
+   <artifactId>gson</artifactId>
+   <version>1.0.0</version>
+ </dependency>
+
+ ```
+
 ### 手动安装
    无
    
