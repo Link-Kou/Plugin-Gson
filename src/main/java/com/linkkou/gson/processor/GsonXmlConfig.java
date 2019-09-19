@@ -11,9 +11,9 @@ import java.net.URL;
 import java.util.HashMap;
 
 /**
+ * 自定义Gson配置
  * @author lk
  * @version 1.0
- *
  */
 public class GsonXmlConfig {
 
@@ -23,14 +23,16 @@ public class GsonXmlConfig {
 
     public GsonXmlConfig() {
         final URL resource = GsonProcessor.class.getClassLoader().getResource("gson.xml");
-        //1.创建DocumentBuilderFactory对象
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        try {
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document d = builder.parse(resource.openStream());
-            getNodeGroups(d);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (null != resource) {
+            //1.创建DocumentBuilderFactory对象
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            try {
+                DocumentBuilder builder = factory.newDocumentBuilder();
+                Document d = builder.parse(resource.openStream());
+                getNodeGroups(d);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

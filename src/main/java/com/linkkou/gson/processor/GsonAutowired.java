@@ -1,13 +1,12 @@
 package com.linkkou.gson.processor;
 
-import com.linkkou.gson.GsonBuild;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 自动注入
  * @author lk
  * @version 1.0
  *

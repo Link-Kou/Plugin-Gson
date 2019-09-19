@@ -8,7 +8,7 @@
     <artifactId>gson</artifactId>
 
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>Plugin-Gson-${project.version}</name>
     <url>https://github.com/Link-Kou/Plugin-Gson</url>
     <description>GsonPlugin</description>
