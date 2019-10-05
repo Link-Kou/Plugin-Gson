@@ -29,7 +29,7 @@ import java.util.*;
  *
  */
 @SupportedAnnotationTypes({"com.linkkou.gson.processor.GsonAutowired"})
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class GsonProcessor extends AbstractProcessor {
 
     private static final Class<GsonAutowired> GSON_AUTOWIRED = GsonAutowired.class;
@@ -183,6 +183,8 @@ public class GsonProcessor extends AbstractProcessor {
                             ), names.fromString("GsonBuild")
                     ), names.fromString("getGson")
             );*/
+
+            //region 读取xml根据配置进行自定义生成
             JCTree.JCFieldAccess getGson = null;
             JCTree.JCFieldAccess getDefaultGson = buildJCFieldAccess("com.linkkou.gson.GsonBuild.getGson");
             if (null == group && null == gsonXmlConfig.getDefaultCom()) {
@@ -201,6 +203,8 @@ public class GsonProcessor extends AbstractProcessor {
                     getGson = buildJCFieldAccess(gsonXmlConfig.getDefaultCom());
                 }
             }
+            //endregion
+
             if (null != getGson) {
                 /*final List<JCTree.JCExpression> JCLiteralList = new ArrayList<>();
                 GsonAutoWiredAttrList.stream().forEach((x) -> {

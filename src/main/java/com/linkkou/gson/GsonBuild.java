@@ -28,6 +28,7 @@ public class GsonBuild {
             .registerTypeAdapter(GsonEnum.class, new GsonEnumTypeAdapter<GsonEnum>())
             //.registerTypeAdapter(GsonDateTimestamp.class, new GsonDateTimeStampAdapter<GsonDateTimestamp>())
             //.registerTypeAdapter(GsonDate.class, new GsonDateAdapter<GsonDate>())
+            //时间进行格式化
             .registerTypeAdapter(Time.class, new TimeTypeAdapter())
             //double==Double & float==Float 类型精度控制
             .registerTypeAdapter(Double.class, new DoubleTypeAdapter())
