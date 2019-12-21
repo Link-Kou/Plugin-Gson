@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
  *
  * @author lk
  * @version 1.0
+ * @date 2019/9/2 19:09
  *
  */
 public class DoubleTypeAdapter<E> implements JsonSerializer<E> {

@@ -25,7 +25,9 @@ import java.util.*;
 /**
  * 基于JDK动态代码生成
  *
- * @author LK
+ * @author lk
+ * @version 1.0
+ * @date 2019/9/2 19:09
  *
  */
 @SupportedAnnotationTypes({"com.linkkou.gson.processor.GsonAutowired"})
