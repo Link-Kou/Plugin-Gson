@@ -2,9 +2,17 @@
 
 ### Plugin-Gson 能做什么？
 
-> 基于Gson封装了TypeAdapterFactory与TypeAdapter。
-> 基于注解，进行代码构建,解决GSON的全局使用降低耦合度
-> 
+> 实现了Gson的TypeAdapterFactory与TypeAdapter自定义
+
+- Duuble精度、Float精度、Enum自定义转换
+- Data、Time、Timestamp需要为NUll的情况
+
+> Java的编译时注解;继承AbstractProcessor进行代码构建
+> 解决GSON的全局使用降低耦合度
+
+- @GsonAutowired注解注入
+- 使用XML进行配置
+
 ---
 ### 使用环境
 
@@ -31,7 +39,7 @@
    
 ### 使用教程
 
-1. @GsonAutowired会实现构建,无平台无关非Spring环境中也可以使用
+1. @GsonAutowired会实现构建，与框架无关的实现，非Spring环境中也可以使用
 
 ```java：
 public class TestDemo {
@@ -59,7 +67,7 @@ public class TestDemo {
     XML文件如下示列
 ```
 
- ![样列](https://raw.githubusercontent.com/Link-Kou/Plugin-Gson/master/image/2020-03-18_16-24-46.jpg "样列")
+![样列](https://raw.githubusercontent.com/Link-Kou/Plugin-Gson/master/image/2020-03-18_16-24-46.jpg "样列")
  
 ```xml：
   <?xml version="1.0" encoding="UTF-8"?>
