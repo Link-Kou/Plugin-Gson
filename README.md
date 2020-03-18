@@ -58,6 +58,9 @@ public class TestDemo {
     此非必须步骤,默认情况下会自动实现一个默认的GsonBuilder
     XML文件如下示列
 ```
+
+ ![样列](https://raw.githubusercontent.com/Link-Kou/Plugin-Gson/master/image/2020-03-18_16-24-46.jpg "样列")
+ 
 ```xml：
   <?xml version="1.0" encoding="UTF-8"?>
   <groups default="true">
