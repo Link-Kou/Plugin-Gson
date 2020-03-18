@@ -27,6 +27,7 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,41 +35,41 @@ import java.util.Date;
 
 /**
  * 拷贝GSON源代码
- * 处理Time类型的序列号
+ * 处理Timestamp类型的序列号
  * Adapter for Time. Although this class appears stateless, it is not.
  * DateFormat captures its time zone and locale when it is created, which gives
  * this class state. DateFormat isn't thread safe either, so this class has
  * to synchronize its read and write methods.
  */
-public final class TimeTypeAdapter extends TypeAdapter<Time> {
+public final class TimestampTypeAdapter extends TypeAdapter<Timestamp> {
 
     public static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {
         // we use a runtime check to make sure the 'T's equal
         @SuppressWarnings("unchecked")
         @Override
         public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
-            return typeToken.getRawType() == Time.class ? (TypeAdapter<T>) new TimeTypeAdapter() : null;
+            return typeToken.getRawType() == Timestamp.class ? (TypeAdapter<T>) new TimestampTypeAdapter() : null;
         }
     };
 
-    private final DateFormat format = new SimpleDateFormat("HH:mm:ss");
+    private final DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Override
-    public synchronized Time read(JsonReader in) throws IOException {
+    public synchronized Timestamp read(JsonReader in) throws IOException {
         if (in.peek() == JsonToken.NULL) {
             in.nextNull();
             return null;
         }
         try {
             Date date = format.parse(in.nextString());
-            return new Time(date.getTime());
+            return new Timestamp(date.getTime());
         } catch (ParseException e) {
             throw new JsonSyntaxException(e);
         }
     }
 
     @Override
-    public synchronized void write(JsonWriter out, Time value) throws IOException {
+    public synchronized void write(JsonWriter out, Timestamp value) throws IOException {
         out.value(value == null ? null : format.format(value));
     }
 }

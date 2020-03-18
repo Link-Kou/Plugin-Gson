@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 
 /**
  * Double 精度控制
- *
+ * 小数点保留两位
  * @author lk
  * @version 1.0
  * @date 2019/9/2 19:09
@@ -26,7 +26,7 @@ public class DoubleTypeAdapter<E> implements JsonSerializer<E> {
             DecimalFormat format = new DecimalFormat("##0.00");
             if (value.isNaN()) {
                 String temp = format.format(0);
-                return new JsonPrimitive(temp); // Convert NaN to zero
+                return new JsonPrimitive(temp);
             }
             String temp = format.format(src);
             return new JsonPrimitive(temp);

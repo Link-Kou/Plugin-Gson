@@ -7,6 +7,7 @@ import java.lang.reflect.*;
 
 /**
  * 枚举转换
+ * 由{@link GsonEnumTypeAdapterFactory}使用
  *
  * @author lk
  * @version 1.0

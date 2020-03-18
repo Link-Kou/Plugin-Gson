@@ -11,7 +11,7 @@ import com.google.gson.JsonElement;
  * @date 2019/9/2 19:09
  *
  */
-public interface GsonEnum<E> {
+public interface GsonEnum<E extends Enum<E>> {
 
     /**
      * 序列化

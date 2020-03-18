@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 
 /**
- * Double 精度控制
+ * Float 精度控制
  *
  * @author lk
  * @version 1.0

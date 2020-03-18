@@ -6,13 +6,12 @@ import com.linkkou.gson.typefactory.impl.*;
 import com.linkkou.gson.typefactory.GsonEnum;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
- *
  * @author lk
  * @version 1.0
  * @date 2019/9/2 19:09
- *
  */
 public class GsonBuild {
 
@@ -32,9 +31,11 @@ public class GsonBuild {
             //.registerTypeAdapter(GsonDate.class, new GsonDateAdapter<GsonDate>())
             //时间进行格式化
             .registerTypeAdapter(Time.class, new TimeTypeAdapter())
+            .registerTypeAdapter(Timestamp.class, new TimestampTypeAdapter())
+            .registerTypeAdapter(java.sql.Date.class, new SqlDateTypeAdapter())
             //double==Double & float==Float 类型精度控制
             .registerTypeAdapter(Double.class, new DoubleTypeAdapter())
-            .registerTypeAdapter(Float.class, new DoubleTypeAdapter())
+            .registerTypeAdapter(Float.class, new FloatTypeAdapter())
             .create();
 
 

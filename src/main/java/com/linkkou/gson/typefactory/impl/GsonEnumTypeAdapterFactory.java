@@ -14,7 +14,7 @@ import java.io.IOException;
 
 /**
  * 枚举转换 TypeAdapter 的工厂类
- *
+ * 处理enum类型
  * @author lk
  * @version 1.0
  * @date 2019/9/2 19:09
