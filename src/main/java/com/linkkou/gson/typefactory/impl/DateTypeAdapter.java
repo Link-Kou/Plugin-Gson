@@ -30,6 +30,10 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -42,6 +46,15 @@ import java.util.Date;
  */
 public final class DateTypeAdapter extends TypeAdapter<Date> {
 
+    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    public DateTypeAdapter() {
+    }
+
+    public DateTypeAdapter(DateTimeFormatter format) {
+        dateTimeFormatter = format;
+    }
+
     public static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {
         // we use a runtime check to make sure the 'T's equal
         @SuppressWarnings("unchecked")
@@ -51,24 +64,18 @@ public final class DateTypeAdapter extends TypeAdapter<Date> {
         }
     };
 
-    private final DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
     @Override
     public synchronized Date read(JsonReader in) throws IOException {
         if (in.peek() == JsonToken.NULL) {
             in.nextNull();
             return null;
         }
-        try {
-            Date date = format.parse(in.nextString());
-            return new Date(date.getTime());
-        } catch (ParseException e) {
-            throw new JsonSyntaxException(e);
-        }
+        Instant instant = LocalDateTime.parse(in.nextString(), this.dateTimeFormatter).atZone(ZoneId.systemDefault()).toInstant();
+        return Date.from(instant);
     }
 
     @Override
     public synchronized void write(JsonWriter out, Date value) throws IOException {
-        out.value(value == null ? null : format.format(value));
+        out.value(value == null ? null : this.dateTimeFormatter.format(value.toInstant()));
     }
 }

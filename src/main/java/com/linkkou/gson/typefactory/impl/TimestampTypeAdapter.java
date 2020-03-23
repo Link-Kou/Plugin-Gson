@@ -17,7 +17,6 @@
 package com.linkkou.gson.typefactory.impl;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -26,22 +25,29 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
  * 拷贝GSON源代码
- * 处理Timestamp类型的序列号
- * Adapter for Time. Although this class appears stateless, it is not.
- * DateFormat captures its time zone and locale when it is created, which gives
- * this class state. DateFormat isn't thread safe either, so this class has
- * to synchronize its read and write methods.
+ * 改用为Java8的写法
  */
 public final class TimestampTypeAdapter extends TypeAdapter<Timestamp> {
+
+
+    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    public TimestampTypeAdapter() {
+    }
+
+    public TimestampTypeAdapter(DateTimeFormatter format) {
+        dateTimeFormatter = format;
+    }
+
 
     public static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {
         // we use a runtime check to make sure the 'T's equal
@@ -52,24 +58,19 @@ public final class TimestampTypeAdapter extends TypeAdapter<Timestamp> {
         }
     };
 
-    private final DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
     @Override
-    public synchronized Timestamp read(JsonReader in) throws IOException {
+    public Timestamp read(JsonReader in) throws IOException {
         if (in.peek() == JsonToken.NULL) {
             in.nextNull();
             return null;
         }
-        try {
-            Date date = format.parse(in.nextString());
-            return new Timestamp(date.getTime());
-        } catch (ParseException e) {
-            throw new JsonSyntaxException(e);
-        }
+        Instant instant = LocalDateTime.parse(in.nextString(), this.dateTimeFormatter).atZone(ZoneId.systemDefault()).toInstant();
+        Date date = Date.from(instant);
+        return new Timestamp(date.getTime());
     }
 
     @Override
-    public synchronized void write(JsonWriter out, Timestamp value) throws IOException {
-        out.value(value == null ? null : format.format(value));
+    public void write(JsonWriter out, Timestamp value) throws IOException {
+        out.value(value == null ? null : this.dateTimeFormatter.format(value.toInstant()));
     }
 }

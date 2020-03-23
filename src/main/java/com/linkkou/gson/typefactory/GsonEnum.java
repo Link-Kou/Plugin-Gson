@@ -9,7 +9,6 @@ import com.google.gson.JsonElement;
  * @author lk
  * @version 1.0
  * @date 2019/9/2 19:09
- *
  */
 public interface GsonEnum<E extends Enum<E>> {
 
@@ -27,5 +26,14 @@ public interface GsonEnum<E extends Enum<E>> {
      * @return
      */
     E deserialize(JsonElement jsonEnum);
+
+    /**
+     * 获取到值
+     *
+     * @param o   值
+     * @param <T> 值
+     * @return 枚举
+     */
+    <T> E convert(T o);
 
 }
