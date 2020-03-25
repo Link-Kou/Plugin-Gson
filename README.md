@@ -32,7 +32,7 @@
  <dependency>
    <groupId>com.github.link-kou</groupId>
    <artifactId>gson</artifactId>
-   <version>1.0.2</version>
+   <version>1.0.3</version>
  </dependency>
 
  ```
