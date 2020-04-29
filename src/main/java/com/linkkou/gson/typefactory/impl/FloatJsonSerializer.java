@@ -9,16 +9,16 @@ import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 
 /**
+ * 输出
  * Float 精度控制
- *
  * @author lk
  * @version 1.0
  * @date 2019/9/2 19:09
  *
  */
-public class FloatTypeAdapter<E> implements JsonSerializer<E> {
+public class FloatJsonSerializer<E> implements JsonSerializer<E> {
 
-    public FloatTypeAdapter() {
+    public FloatJsonSerializer() {
     }
 
     @Override

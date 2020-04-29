@@ -6,7 +6,7 @@ import com.linkkou.gson.typefactory.GsonEnum;
 import java.lang.reflect.*;
 
 /**
- * 枚举转换
+ * 输出 枚举转换
  * 由{@link GsonEnumTypeAdapterFactory}使用
  *
  * @author lk
@@ -14,9 +14,9 @@ import java.lang.reflect.*;
  * @date 2019/9/2 19:09
  *
  */
-public class GsonEnumTypeAdapter<E> implements JsonSerializer<E> {
+public class GsonEnumJsonSerializer<E> implements JsonSerializer<E> {
 
-    public GsonEnumTypeAdapter() {
+    public GsonEnumJsonSerializer() {
     }
 
     @Override

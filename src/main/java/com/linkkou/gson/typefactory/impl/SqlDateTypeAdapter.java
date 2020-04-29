@@ -51,6 +51,6 @@ public class SqlDateTypeAdapter extends TypeAdapter<Date> {
 
     @Override
     public synchronized void write(JsonWriter out, Date value) throws IOException {
-        out.value(value == null ? null : this.dateTimeFormatter.format(value.toInstant()));
+        out.value(value == null ? null : this.dateTimeFormatter.format(value.toLocalDate()));
     }
 }

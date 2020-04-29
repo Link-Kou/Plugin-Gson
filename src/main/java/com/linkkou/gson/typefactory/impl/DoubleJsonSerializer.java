@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 
 /**
+ * 输出
  * Double 精度控制
  * 小数点保留两位
  * @author lk
@@ -13,9 +14,9 @@ import java.text.DecimalFormat;
  * @date 2019/9/2 19:09
  *
  */
-public class DoubleTypeAdapter<E> implements JsonSerializer<E> {
+public class DoubleJsonSerializer<E> implements JsonSerializer<E> {
 
-    public DoubleTypeAdapter() {
+    public DoubleJsonSerializer() {
     }
 
     @Override

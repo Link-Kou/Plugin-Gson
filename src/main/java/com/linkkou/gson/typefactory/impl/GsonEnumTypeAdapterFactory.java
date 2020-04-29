@@ -13,7 +13,7 @@ import com.linkkou.gson.typefactory.GsonEnum;
 import java.io.IOException;
 
 /**
- * 枚举转换 TypeAdapter 的工厂类
+ * 输入输出 枚举转换 TypeAdapter 的工厂类
  * 处理enum类型
  * @author lk
  * @version 1.0
@@ -39,7 +39,7 @@ public class GsonEnumTypeAdapterFactory implements TypeAdapterFactory {
                         public void write(JsonWriter out, T value) throws IOException {
                             /**
                              * 如果是枚举就执行自己定义的解析器
-                             * {@link GsonEnumTypeAdapter}
+                             * {@link GsonEnumJsonSerializer}
                              */
                             final TypeAdapter<T> adapter = (TypeAdapter<T>) gson.getAdapter(GsonEnum.class);
                             adapter.write(out, value);
@@ -55,7 +55,7 @@ public class GsonEnumTypeAdapterFactory implements TypeAdapterFactory {
                             if (value.isJsonNull()) {
                                 return null;
                             }
-                            return (T) new GsonEnumTypeAdapter().deserialize(value, rawType);
+                            return (T) new GsonEnumJsonSerializer().deserialize(value, rawType);
                         }
 
                     };
