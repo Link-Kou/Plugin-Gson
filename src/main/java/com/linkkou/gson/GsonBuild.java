@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.linkkou.gson.typefactory.impl.*;
 import com.linkkou.gson.typefactory.GsonEnum;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Time;
 import java.sql.Timestamp;
 
@@ -26,16 +28,18 @@ public class GsonBuild {
             .registerTypeAdapterFactory(new GsonEnumTypeAdapterFactory())
             //不导出实体中没有用@Expose注解的属性
             //.excludeFieldsWithoutExposeAnnotation()
-            .registerTypeAdapter(GsonEnum.class, new GsonEnumTypeAdapter<GsonEnum>())
+            .registerTypeAdapter(GsonEnum.class, new GsonEnumJsonSerializer<GsonEnum>())
             //.registerTypeAdapter(GsonDateTimestamp.class, new GsonDateTimeStampAdapter<GsonDateTimestamp>())
             //.registerTypeAdapter(GsonDate.class, new GsonDateAdapter<GsonDate>())
             //时间进行格式化
             .registerTypeAdapter(Time.class, new TimeTypeAdapter())
             .registerTypeAdapter(Timestamp.class, new TimestampTypeAdapter())
             .registerTypeAdapter(java.sql.Date.class, new SqlDateTypeAdapter())
+            .registerTypeAdapter(BigDecimal.class, new BigDecimalTypeAdapter())
+            .registerTypeAdapter(BigInteger.class, new BigIntegerTypeAdapter())
             //double==Double & float==Float 类型精度控制
-            .registerTypeAdapter(Double.class, new DoubleTypeAdapter())
-            .registerTypeAdapter(Float.class, new FloatTypeAdapter())
+            .registerTypeAdapter(Double.class, new DoubleJsonSerializer())
+            .registerTypeAdapter(Float.class, new FloatJsonSerializer())
             .create();
 
 

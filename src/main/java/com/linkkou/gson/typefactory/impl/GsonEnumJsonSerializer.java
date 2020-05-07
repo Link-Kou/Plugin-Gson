@@ -12,11 +12,11 @@ import java.lang.reflect.*;
  * @author lk
  * @version 1.0
  * @date 2019/9/2 19:09
- *
  */
 public class GsonEnumJsonSerializer<E> implements JsonSerializer<E> {
 
     public GsonEnumJsonSerializer() {
+
     }
 
     @Override
@@ -24,10 +24,13 @@ public class GsonEnumJsonSerializer<E> implements JsonSerializer<E> {
         JsonPrimitive jsonElement = null;
         if (src instanceof GsonEnum) {
             try {
-                Constructor<JsonPrimitive> constructor = JsonPrimitive.class.getDeclaredConstructor(Object.class);
-                constructor.setAccessible(true);
-                jsonElement = constructor.newInstance(((GsonEnum) src).serialize());
-            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                final Object serialize = ((GsonEnum) src).serialize();
+                JsonPrimitive jsonPrimitive = new JsonPrimitive("");
+                final Field value = jsonPrimitive.getClass().getDeclaredField("value");
+                value.setAccessible(true);
+                value.set(jsonPrimitive, serialize);
+                jsonElement = jsonPrimitive;
+            } catch (IllegalAccessException | NoSuchFieldException e) {
                 e.printStackTrace();
             }
         }

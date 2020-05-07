@@ -29,7 +29,8 @@ public class FloatJsonSerializer<E> implements JsonSerializer<E> {
             DecimalFormat format = new DecimalFormat("##0.00");
             if (value.isNaN()) {
                 String temp = format.format(0);
-                return new JsonPrimitive(temp); // Convert NaN to zero
+                // Convert NaN to zero
+                return new JsonPrimitive(temp);
             }
             String temp = format.format(src);
             return new JsonPrimitive(temp);
