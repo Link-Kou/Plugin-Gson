@@ -17,7 +17,6 @@
 package com.linkkou.gson.typefactory.impl;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -26,10 +25,6 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -76,6 +71,6 @@ public final class DateTypeAdapter extends TypeAdapter<Date> {
 
     @Override
     public synchronized void write(JsonWriter out, Date value) throws IOException {
-        out.value(value == null ? null : this.dateTimeFormatter.format(value.toInstant()));
+        out.value(value == null ? null : this.dateTimeFormatter.format(value.toInstant().atZone(ZoneId.systemDefault())));
     }
 }
