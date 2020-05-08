@@ -71,6 +71,6 @@ public final class TimestampTypeAdapter extends TypeAdapter<Timestamp> {
 
     @Override
     public void write(JsonWriter out, Timestamp value) throws IOException {
-        out.value(value == null ? null : this.dateTimeFormatter.format(value.toLocalDateTime()));
+        out.value(value == null ? null : this.dateTimeFormatter.format(value.toLocalDateTime().atZone(ZoneId.systemDefault())));
     }
 }
