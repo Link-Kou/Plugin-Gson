@@ -84,7 +84,7 @@ public class TestDemo {
   </groups>
 ```
 
-4.bean示列: <b>com.linkkou.gson.test.GsonBulidTest.getGson</b>,<i>getGson</i>可以替换成你喜欢的方法名称
+4.bean示列: <b>getGson</b>可以替换成你喜欢的方法名称
 
 ```java
 
