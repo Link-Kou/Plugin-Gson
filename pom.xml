@@ -6,12 +6,11 @@
 
     <groupId>com.github.link-kou</groupId>
     <artifactId>gson</artifactId>
-
     <packaging>jar</packaging>
-    <version>1.0.3</version>
-
-
+    <version>1.0.4</version>
+    <name>Plugin-gson-${project.version}</name>
     <url>https://github.com/Link-Kou/Plugin-Gson</url>
+
     <description>GsonPlugin</description>
 
     <licenses>
