@@ -26,7 +26,7 @@
  
 ### Maven仓库
 
- ```xml：
+ ```xml
 
  <dependency>
    <groupId>com.github.link-kou</groupId>
