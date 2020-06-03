@@ -70,13 +70,13 @@ public class TestDemo {
  
 ```xml：
   <?xml version="1.0" encoding="UTF-8"?>
-  //默认即可，所有子标签都在此标签里面
-  //default属性表示是否对默认情况下的注解@GsonAutowired替换;默认为True
+  <!--默认即可，所有子标签都在此标签里面-->
+  <!--default属性表示是否对默认情况下的注解@GsonAutowired替换;默认为True-->
   <groups default="true">
-      //默认分组指定之后,所有实现了 @GsonAutowired都会被替换
+      <!--默认分组指定之后,所有实现了 @GsonAutowired都会被替换-->
       <default bean="com.linkkou.gson.test.GsonBulidTest.getGson"/>
-      //指定分组Gson, @GsonAutowired加上group的优先级最高
-      //在没有找到group的情况下，采用default的实现
+      <!--指定分组Gson, @GsonAutowired加上group的优先级最高-->
+      <!--在没有找到group的情况下，采用default的实现-->
       <group title="gson1" bean="com.linkkou.gson.test.GsonBulidTest.getGson"/>
       <group title="gson2" bean="com.linkkou.gson.test.GsonBulidTest.getGson"/>
   </groups>
