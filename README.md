@@ -7,11 +7,10 @@
 - Duuble精度、Float精度、Enum自定义转换
 - Data、Time、Timestamp需要为NUll的情况
 
-> Java的编译时注解;继承AbstractProcessor进行代码构建
-> 解决GSON的全局使用降低耦合度
-
-- @GsonAutowired注解注入
-- 使用XML进行配置
+> 解决GSON的全局使用中降低耦合度
+>
+- 采用@GsonAutowired注解方式注入支持Spring和非Spring环境
+- 使用XML进行配置,进行分组管理,针对有特殊需要的情况下，定义独立的Gsong
 
 ---
 ### 使用环境
@@ -62,46 +61,33 @@ public class TestDemo {
 2.如何实现替换自己的实现
 
 ```bash：
-    在项目根resources下创建gson.xml文件(文件名称不能改变)。
-    此非必须步骤,默认情况下会自动实现一个默认的GsonBuilder
-    XML文件如下示列
+  在项目根resources下创建gson.xml文件(文件名称不能改变)。
+  此非必须步骤,默认情况下会自动实现一个默认的GsonBuilder
+  XML文件如下示列
 ```
 
 ![样列](https://raw.githubusercontent.com/Link-Kou/Plugin-Gson/master/image/2020-03-18_16-24-46.jpg "样列")
  
 ```xml：
   <?xml version="1.0" encoding="UTF-8"?>
+  //默认即可，所有子标签都在此标签里面
+  //default属性表示是否对默认情况下的注解@GsonAutowired替换;默认为True
   <groups default="true">
-      <!--<default bean="com.linkkou.gson.test.GsonBulidTest.getGson"/>-->
+      //默认分组指定之后,所有实现了 @GsonAutowired都会被替换
+      <default bean="com.linkkou.gson.test.GsonBulidTest.getGson"/>
+      //指定分组Gson, @GsonAutowired加上group的优先级最高
+      //在没有找到group的情况下，采用default的实现
       <group title="gson1" bean="com.linkkou.gson.test.GsonBulidTest.getGson"/>
       <group title="gson2" bean="com.linkkou.gson.test.GsonBulidTest.getGson"/>
   </groups>
 ```
 
-3. 标签说明
-```xml：
-
-   //默认即可，所有子标签都在此标签里面
-   //default属性表示是否对默认情况下的注解@GsonAutowired替换;默认为True
-   <groups default="true"/> 
-
-   //默认分组指定之后,所有实现了 @GsonAutowired都会被替换
-   <default/> 
-
-   //指定分组Gson, @GsonAutowired加上group的优先级最高
-   //在没有找到group的情况下，采用default的实现
-   <group/> 
-
-```
-
-4.bean的使用构建方式
+4.bean示列: <b>com.linkkou.gson.test.GsonBulidTest.getGson</b>, <u>getGson</u>可以替换成你喜欢的方法名称
 
 ```java：
-//com.linkkou.gson.test.GsonBulidTest.getGson
+
 package com.linkkou.gson.test;
-
 import .....
-
 public class GsonBulidTest {
 
     public static Gson gson = new GsonBuilder()
@@ -113,9 +99,9 @@ public class GsonBulidTest {
             //防止特殊字符出现乱码
             .disableHtmlEscaping()
             .create();
-     /**
-      * 必须使用静态
-      * @return Gson
+    /**
+     * 必须使用静态
+     * @return Gson
      */
     public static Gson getGson() {
         return gson;

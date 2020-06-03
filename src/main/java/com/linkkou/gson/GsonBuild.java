@@ -37,6 +37,7 @@ public class GsonBuild {
             .registerTypeAdapter(java.sql.Date.class, new SqlDateTypeAdapter())
             .registerTypeAdapter(BigDecimal.class, new BigDecimalTypeAdapter())
             .registerTypeAdapter(BigInteger.class, new BigIntegerTypeAdapter())
+            .registerTypeAdapter(Integer.class, new IntegerTypeAdapter())
             //double==Double & float==Float 类型精度控制
             .registerTypeAdapter(Double.class, new DoubleJsonSerializer())
             .registerTypeAdapter(Float.class, new FloatJsonSerializer())

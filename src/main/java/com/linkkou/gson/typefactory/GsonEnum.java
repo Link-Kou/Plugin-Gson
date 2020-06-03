@@ -28,7 +28,16 @@ public interface GsonEnum<E extends Enum<E>> {
     E deserialize(JsonElement jsonEnum);
 
     /**
-     * 获取到值
+     * Mybatis 序列化
+     *
+     * @return
+     */
+    default Integer reverse() {
+        return (Integer) this.serialize();
+    }
+
+    /**
+     * Mybatis 获取到值
      *
      * @param o   值
      * @param <T> 值
