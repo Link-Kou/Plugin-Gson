@@ -40,7 +40,7 @@
 
 1. @GsonAutowired会实现构建，与框架无关的实现，非Spring环境中也可以使用
 
-```java：
+```java
 public class TestDemo {
 
     @GsonAutowired
@@ -60,15 +60,17 @@ public class TestDemo {
 
 2.如何实现替换自己的实现
 
-```bash：
+```text
+
   在项目根resources下创建gson.xml文件(文件名称不能改变)。
   此非必须步骤,默认情况下会自动实现一个默认的GsonBuilder
   XML文件如下示列
+
 ```
 
 ![样列](https://raw.githubusercontent.com/Link-Kou/Plugin-Gson/master/image/2020-03-18_16-24-46.jpg "样列")
  
-```xml：
+```xml
   <?xml version="1.0" encoding="UTF-8"?>
   <!--默认即可，所有子标签都在此标签里面-->
   <!--default属性表示是否对默认情况下的注解@GsonAutowired替换;默认为True-->
@@ -84,7 +86,7 @@ public class TestDemo {
 
 4.bean示列: <b>com.linkkou.gson.test.GsonBulidTest.getGson</b>, <u>getGson</u>可以替换成你喜欢的方法名称
 
-```java：
+```java
 
 package com.linkkou.gson.test;
 import .....
